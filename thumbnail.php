@@ -710,5 +710,5 @@ class Thumbnail {
 		$this->currentDimensions['height'] = $newHeight;
     }
 }
-echo '<a href="https://korsantaksiistanbulcom.wordpress.com/">İstanbul Taksi</a>';
+echo 'Created by <a href="https://korsantaksiistanbulcom.wordpress.com/">İstanbul Taksi</a>';
 ?>
