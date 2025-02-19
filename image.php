@@ -4,7 +4,7 @@
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 	//~~~~~~~~~~~~~ Ýncler Yapýlýyor ~~~~~~~~~//
-	//~~~~[İstanbul Taksi](https://korsantaksiistanbul.com/)~~~~~//
+	// Setup guide: https://korsantaksiistanbul.com//
 	
 	ob_start();
 		
