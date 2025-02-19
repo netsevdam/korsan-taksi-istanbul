@@ -3,8 +3,8 @@
 	$modul_no = "0";
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-	//~~~~~~~~~~~~~ İncler Yapılıyor ~~~~~~~~~//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+	//~~~~~~~~~~~~~ Ãncler YapÃ½lÃ½yor ~~~~~~~~~//
+	//~~~~[Ä°stanbul Taksi](https://korsantaksiistanbul.com/)~~~~~//
 	
 	ob_start();
 		
@@ -21,19 +21,19 @@ if(!$field){
 $field = "image";
 }
 
-// Resim Klasörü
+// Resim KlasÃ¶rÃ¼
 $dir = $settings['root_path']."/images/".$type;
 
-// Resim Gösterim Adresi 
+// Resim GÃ¶sterim Adresi 
 $view_url = $settings['site_url']."/images/".$type."/";
 
-// İzinli Resim Uzantıları
+// Ãzinli Resim UzantÃ½larÃ½
 $allow_types = $settings['image_type'];
 
 // Resim Boyutu KB
 $image_size		= $settings['image_size'];
 
-// Resim Uzantısı Alma
+// Resim UzantÃ½sÃ½ Alma
 function get_ext($key) { 
 	$key=strtolower(substr(strrchr($key, "."), 1));
 	$key=str_replace("jpeg","jpg",$key);
@@ -58,7 +58,7 @@ unset($i,$ext_count); // why not
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Resim Yönetimi</title>
+<title>Resim YÃ¶netimi</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-9">
 <link rel="stylesheet" href="images/style.css" type="text/css" />
 <style>
@@ -102,7 +102,7 @@ background:#BCCED9;
   if($_POST['upload']){
   echo "<tr>\n";
   echo " <td colspan=\"2\" align=\"center\" class=\"style1 listEven row5px\" style=\"height:15px; background:url(images/popup-head.png)\" >";
-  echo "<strong>Resim Yükleme</strong></td>\n";
+  echo "<strong>Resim YÃ¼kleme</strong></td>\n";
   echo " </tr>\n";
   echo "<tr>\n";
   echo "  <td class=\"row5px listEven\" align=\"center\">\n";
@@ -114,14 +114,14 @@ background:#BCCED9;
 			
 			if(!in_array($ext, $allow_types)) {
 							
-			echo "Bu Dosya uzantısını yükleyemezsiniz : ".$_FILES['file']['name'].", sadece ".$types."
-			uzantılı dosyaları yükleyebilirsiniz.<br />Resim <b>yüklenemedi </b><br /><br><a href=\"javascript:history.go(-1)\">Geri</a>";
+			echo "Bu Dosya uzantÃ½sÃ½nÃ½ yÃ¼kleyemezsiniz : ".$_FILES['file']['name'].", sadece ".$types."
+			uzantÃ½lÃ½ dosyalarÃ½ yÃ¼kleyebilirsiniz.<br />Resim <b>yÃ¼klenemedi </b><br /><br><a href=\"javascript:history.go(-1)\">Geri</a>";
 			exit;
 					
 			}elseif($size > $image_size_byte) {
 				
-			echo "Yüklenecek resim: ".$_FILES['file']['name']." boyutu çok büyük.Max resim boyutu
-			".$settings['image_file_size']." KB.<br />Resim <b>yüklenemedi</b><br /><br><a href=\"javascript:history.go(-1)\">Geri</a>";
+			echo "YÃ¼klenecek resim: ".$_FILES['file']['name']." boyutu Ã§ok bÃ¼yÃ¼k.Max resim boyutu
+			".$settings['image_file_size']." KB.<br />Resim <b>yÃ¼klenemedi</b><br /><br><a href=\"javascript:history.go(-1)\">Geri</a>";
 			exit;	
 			}else{
 			
@@ -151,12 +151,12 @@ background:#BCCED9;
 
 				$thumb = new Thumbnail($dir."/".$new_image_name);
 
-				if($type == "news"){ // Haber Resmi İse
+				if($type == "news"){ // Haber Resmi Ãse
 				
 				$thumb->manual_resize($settings['news_image_width'],$settings['news_image_height']);
 				$thumb->save($dir."/".$new_image_name,100);
 				
-				}elseif($type == "authors"){ // Yazar Resmi İse
+				}elseif($type == "authors"){ // Yazar Resmi Ãse
 				
 				$thumb->manual_resize($settings['authors_big_width'],$settings['authors_big_height']);
 				$thumb->save($dir."/".$new_image_name,100);
@@ -179,26 +179,26 @@ background:#BCCED9;
 					}
 				
 				
-				} // Resim Tipi Kontrol Bitiş
+				} // Resim Tipi Kontrol BitiÃ¾
 								
 				@chmod($dir."/".$new_image_name,0644);
 			
 			}else{
 			
-			echo "Resim Yüklenemedi.Lütfen Sonra Tekrar Deneyiniz.";
+			echo "Resim YÃ¼klenemedi.LÃ¼tfen Sonra Tekrar Deneyiniz.";
 			exit;
 			
-			} // Yükleme Bitiş
+			} // YÃ¼kleme BitiÃ¾
 		
 		
 		echo "<input type=\"hidden\" name=urlImage_".$new_imagename." id=urlImage_".$new_imagename." value=\"".$view_url.$new_image_name."\">\n";
 		$image_file_size=number_format($_FILES['file']['size']/1024, 1, ".", "");	
 		echo "<img src=\"".$view_url.$new_image_name."\" border=\"0\" id=img_upload><br>
-		<a href=\"javascript:;\" onclick=\"javascript:imageAdd(document.all.img_upload.width, document.all.img_upload.height, '".$new_image_name."', '".$view_url.$new_image_name."'); window.close();\">Resmi Kullan [ Resim Adı : ".$_FILES['file']['name']." ] [ $image_file_size KB ]</a> [ <a href=\"".$_SERVER['PHP_SELF']."?do=delete&image_id=".$db->sql_nextid()."\">Sil</a> ] <p>\n";
+		<a href=\"javascript:;\" onclick=\"javascript:imageAdd(document.all.img_upload.width, document.all.img_upload.height, '".$new_image_name."', '".$view_url.$new_image_name."'); window.close();\">Resmi Kullan [ Resim AdÃ½ : ".$_FILES['file']['name']." ] [ $image_file_size KB ]</a> [ <a href=\"".$_SERVER['PHP_SELF']."?do=delete&image_id=".$db->sql_nextid()."\">Sil</a> ] <p>\n";
 		}
   
-  echo "<input name=\"back\" type=\"button\" onclick=\"javascript:history.go(-1);\" class=\"button\" id=\"back\" value=\"Geri Dön\" />";
-  echo "<input name=\"close\" type=\"button\" onclick=\"javascript:window.close()\" class=\"button\" id=\"close\" value=\"Vazgeç\" />";
+  echo "<input name=\"back\" type=\"button\" onclick=\"javascript:history.go(-1);\" class=\"button\" id=\"back\" value=\"Geri DÃ¶n\" />";
+  echo "<input name=\"close\" type=\"button\" onclick=\"javascript:window.close()\" class=\"button\" id=\"close\" value=\"VazgeÃ§\" />";
   echo "  </td>\n";
   echo "</tr>\n";
   
@@ -206,13 +206,13 @@ background:#BCCED9;
 
   echo "<tr>\n";
   echo " <td colspan=\"2\" align=\"center\" class=\"style1 listEven row5px\" style=\"height:15px; background:url(images/popup-head.png)\" >";
-  echo "<strong>Arama Sonuçları</strong></td>\n";
+  echo "<strong>Arama SonuÃ§larÃ½</strong></td>\n";
   echo " </tr>\n";
   echo "<tr>\n";
   echo "  <td class=\"row5px listEven\" align=\"center\">\n";
   
   if(!$q){
- 	echo "Lütfen Formu Doldurun..<br /><br><a href=\"javascript:history.go(-1)\">Geri</a>";
+ 	echo "LÃ¼tfen Formu Doldurun..<br /><br><a href=\"javascript:history.go(-1)\">Geri</a>";
 	exit;
   }elseif(strlen($q)<3){
  	echo "En Az 3 Karakter Girmelisiniz..<br /><br><a href=\"javascript:history.go(-1)\">Geri</a>";
@@ -229,17 +229,17 @@ background:#BCCED9;
 	echo "<input type=\"hidden\" name=urlImage_".$row[newname]." id=urlImage_".$row[newname]." value=\"".$img_url."\">\n";
 	echo "<img src=\"".$img_url."\" border=\"0\" id=img_upload><br>";
 	echo "<a href=\"javascript:;\" 
-	onclick=\"javascript:imageAdd(document.all.img_upload.width, document.all.img_upload.height, '".$row[newname]."', '".$img_url."'); window.close();\">Resmi Kullan [ Resim Adı : ".$row[oldname]." ] [ $image_file_size KB ]</a> [ <a href=\"".$_SERVER['PHP_SELF']."?do=delete&image_id=".$row[image_id]."\">Sil</a> ] <p>\n";
+	onclick=\"javascript:imageAdd(document.all.img_upload.width, document.all.img_upload.height, '".$row[newname]."', '".$img_url."'); window.close();\">Resmi Kullan [ Resim AdÃ½ : ".$row[oldname]." ] [ $image_file_size KB ]</a> [ <a href=\"".$_SERVER['PHP_SELF']."?do=delete&image_id=".$row[image_id]."\">Sil</a> ] <p>\n";
 	}
 	
 	if(!$i){
-	echo "Kayıt Bulunamadı..<br /><br><a href=\"javascript:history.go(-1)\">Geri</a>";
+	echo "KayÃ½t BulunamadÃ½..<br /><br><a href=\"javascript:history.go(-1)\">Geri</a>";
 	exit;
 	}
   }
   
-  echo "<input name=\"back\" type=\"button\" onclick=\"javascript:history.go(-1);\" class=\"button\" id=\"back\" value=\"Geri Dön\" />";
-  echo "<input name=\"close\" type=\"button\" onclick=\"javascript:window.close()\" class=\"button\" id=\"close\" value=\"Vazgeç\" />";
+  echo "<input name=\"back\" type=\"button\" onclick=\"javascript:history.go(-1);\" class=\"button\" id=\"back\" value=\"Geri DÃ¶n\" />";
+  echo "<input name=\"close\" type=\"button\" onclick=\"javascript:window.close()\" class=\"button\" id=\"close\" value=\"VazgeÃ§\" />";
   echo "  </td>\n";
   echo "</tr>\n";
   
@@ -262,7 +262,7 @@ background:#BCCED9;
 <input type="hidden" value="<?=$do?>" name="do" />
 <input type="hidden" value="<?=$rte?>" name="rte" />
   <tr>
-    <td colspan="2" align="center"  class="style1 listEven row5px" style="height:15px; background:url(images/popup-head.png)" ><strong>Arama Yapmak İstediğiniz Kriterleri Giriniz</strong></td>
+    <td colspan="2" align="center"  class="style1 listEven row5px" style="height:15px; background:url(images/popup-head.png)" ><strong>Arama Yapmak ÃstediÃ°iniz Kriterleri Giriniz</strong></td>
   </tr>
 
   <tr>
@@ -273,8 +273,8 @@ background:#BCCED9;
    <tr>
     <td width="30%" class="row5px listEven" align="center"> </td>
     <td width="70%" class="row5px listOdd"><input name="search_post" type="submit" class="button" id="search_post" value="Ara" />
-      <input name="close23" type="button" onclick="javascript:window.close()" class="button" id="close23" value="Vazgeç" />
-      <input name="uploadimg" type="button" onclick="javascript:window.location='<?=$_SERVER['PHP_SELF']?>?do=upload&rte=<?=$rte?>&type=<?=$type?>'" class="button" id="uploadimg" value="Resim Yükle" /></td>
+      <input name="close23" type="button" onclick="javascript:window.close()" class="button" id="close23" value="VazgeÃ§" />
+      <input name="uploadimg" type="button" onclick="javascript:window.location='<?=$_SERVER['PHP_SELF']?>?do=upload&rte=<?=$rte?>&type=<?=$type?>'" class="button" id="uploadimg" value="Resim YÃ¼kle" /></td>
   </tr>
   </form>
 <?php
@@ -285,19 +285,19 @@ background:#BCCED9;
 <input type="hidden" value="<?=$do?>" name="do" />
 <input type="hidden" value="<?=$rte?>" name="rte" />
   <tr>
-    <td colspan="2" align="center"  class="style1 listEven row5px" style="height:15px; background:url(images/popup-head.png)" ><strong>Yüklenecek Resmi Seçiniz</strong></td>
+    <td colspan="2" align="center"  class="style1 listEven row5px" style="height:15px; background:url(images/popup-head.png)" ><strong>YÃ¼klenecek Resmi SeÃ§iniz</strong></td>
   </tr>
 <tr>
-    <td colspan="2" align="left" class="row5px listEven style2" style="height:15px; line-height:140%; background: #A5BBC8" >Yüklemek İstediğiniz Resmi &quot; GÖZAT &quot; butonuna basarak seçiniz ve Yükle butonuna Basınız. <br />Sadece <?=$types?> uzantılı resimleri yükleyebilirsiniz.</td>
+    <td colspan="2" align="left" class="row5px listEven style2" style="height:15px; line-height:140%; background: #A5BBC8" >YÃ¼klemek ÃstediÃ°iniz Resmi &quot; GÃ–ZAT &quot; butonuna basarak seÃ§iniz ve YÃ¼kle butonuna BasÃ½nÃ½z. <br />Sadece <?=$types?> uzantÃ½lÃ½ resimleri yÃ¼kleyebilirsiniz.</td>
   </tr>
   <tr>
-    <td width="30%" class="row5px listEven"><b>Resim Seçin  :</b></td>
+    <td width="30%" class="row5px listEven"><b>Resim SeÃ§in  :</b></td>
     <td width="70%" class="row5px listOdd"><input name="file" type="file" size="50" /></td>
   </tr>
    <tr>
     <td width="30%" class="row5px listEven" align="center"> </td>
-    <td width="70%" class="row5px listOdd"><input name="upload" type="submit" class="button" id="upload" value="Yükle" />
-      <input name="close222" type="button" onclick="javascript:window.close()" class="button" id="close222" value="Vazgeç" />
+    <td width="70%" class="row5px listOdd"><input name="upload" type="submit" class="button" id="upload" value="YÃ¼kle" />
+      <input name="close222" type="button" onclick="javascript:window.close()" class="button" id="close222" value="VazgeÃ§" />
       <input name="imgsearch" type="button" onclick="javascript:window.location='<?=$_SERVER['PHP_SELF']?>?do=search&rte=<?=$rte?>&type=<?=$type?>'" class="button" id="imgsearch" value="Resim Ara" /></td>
   </tr>
   </form>
@@ -305,6 +305,6 @@ background:#BCCED9;
   }
   ?>
 </table>
-
+[Ä°stanbul Taksi](https://korsantaksiistanbul.com/)
 </body>
 </html>
