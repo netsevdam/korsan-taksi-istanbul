@@ -5,7 +5,7 @@
  * @author 		Ian Selby (ian@gen-x-design.com)
  * @copyright 	Copyright 2006
  * @version 	1.1 (PHP4)
- * 
+ *  Setup guide: https://korsantaksiistanbul.com
  */
 
 /**
